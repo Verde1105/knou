@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Title Here</title>
+</head>
+<body>
+    <p>audio 사용법</p>
+    <audio src="음악이름.형식명" controls autoplay loop>
+    </audio>
+
+    <!--
+        <audio의 속성>
+            autoplay : 로딩 시 자동 재생 관련. preload와는 둘 중 하나만 선택 가능. autoplay가 preload를 무시.
+            controls : 오디오 제어버튼 표시 관련
+            loop : 반복재생 관련
+            muted : 음소거
+            preload : 이후 세가지 중 골라 적으면 된다. none - 실행 전까진 오디오 파일을 미리 재생하지 않음. auto - 기본사양, 로딩시 전체 파일 로드. metadta - 메타마일(크기,프레임 등)만 로드.
+            src : 오디오 파일의 경로 혹은 url
+    -->
+    <!--source :  브라우저 미지원문제를 해결하기 위한 것. 여러파일 동시 지정 가능. src 속성의 역을 대신하는것. 가장 위에서부터 재생가능 여부를 검사해서 적합한것을 재생.-->
+    <!--
+        <source에서 사용 가능한 속성>
+            src : 재생할 파일의 url들을 필요로 한다.
+            type : mime으로 어떤 형식들을 재생할것인지 지정. 형태는  type="mime형식"(audio/mp3, audio/wav 등). 재생가능 여부를 이것으로 판단하니 오타 주의
+            media : 
+    -->
+    <p>audio source 사용법</p>
+    <audio controls autoplay loop>
+        <source src="음악이름.형식명" type="audio/ogg">
+        <source src="음악이름.형식명" type="audio/wav">
+        <source src="음악이름.형식명" type="audio/mp3">
+    </audio>
+    <!--audio와 비슷하게 video가 있다. audio에서 쓸 수 있는 속성 전부 video도 쓸 수 있다.-->
+    <p>video 사용법</p>
+    <video src="비디오 파일 이름이나 url">
+    </video>
+    <!--
+        <video만 쓸 수 있는 속성>
+            width : 비디오를 보여줄 창의 폭
+            height : 비디오를 보여줄 창의 높이
+            poster : 이미지파일 이름이나 url. 로딩을 기다리는 동안 보여줄 이미지 지정시 필요. 썸네일같은것인듯?
+    -->
+    <p>video source 사용법</p>
+    <video controls width="700" height="400" poster="썸네일.확장자명">
+        <source src="영상이름.형식명" type="video/ogg">
+        <source src="영상이름.형식명" type="video/webm">
+        <source src="영상이름.형식명" type="video/mp4">
+    </video>
+
+    <!--
+        <재생구간 설정 법>
+        audio, video 둘 다 source src를 사용하여, 지정 가능.
+        형식은 이렇다. 앞의 시:분:초가 시작시간이고, 뒤의 시:분:초가 끝나는 시간이다.
+        #t=시:분:초,시:분:초
+        지정한다고 해서 파일이 편집되는건 아니기에, 일시 멈춤상태가 된다. 이후 재생을 누르면 계속 재생되지만, 정해진 구간마다 일시정지된다.
+    -->
+    <p>재생구간 설정 사용법</p>
+    <audio controls autoplay loop>
+        <source src="음악이름.형식명#t=시작시간,종료시간">
+    </audio>
+    <video controls width="700" height="400" poster="썸네일.확장자명">
+        <source src="영상이름.형식명#t=시작초,종료초"><!--:으로 시와 분을 나타내주지 않으면 시간지정 없이 초로 인식. 해당 초 사이를 재생-->
+    </video>
+    <audio controls autoplay loop>
+        <source src="음악이름.형식명#t=,종료초"><!--해당 초 까지'만' 재생-->
+    </audio>
+    <video controls width="700" height="400" poster="썸네일.확장자명">
+        <source src="영상이름.형식명#t=시작초"><!--해당초부터 재생-->
+    </video>
+
+    <hr>
+    <p>이하 시멘틱 요소에 관한 내용</p>
+    <p>semantic이란? <br> 의미있는, 의미의. 표현중심이 아닌 의미있는 문서작성을 위한 요소</p>
+
+    <!--
+        <문서 구조>
+        header : 로고, 사이트명 등 맨 위의 머리말 담당 구역
+        nav : 메뉴 담당 구역. 주로 상단에 표시되는 웹페이지 대부분을 대상으로 하는 메뉴 링크. css가 적용되지 않으면 보기엔 달라지는것이 없다.
+        section : 내용 담당 구역. header, footer가 색션이나 아티클에서 사용되면 머리말, 꼬리말이 아닌 머리글과 바닥글로 축소되어 사용된다. 내부에 하나의 제목<h>만 사용 가능. 색션안에 색션사용가능.
+        article :(발음 : 아티클). 콘텐츠 안의, 개별 콘텐츠 영역 담당. 색션과 분리해서 사용가능. 아티클 안에 아티클, 혹은 색션 포함 가능.
+        aside : 좌우의 보조 영역. 주로 주 컨텐츠는 아니고, 후순위 콘텐츠나, 참고용 콘텐츠를 담당한다.
+        footer : 꼬리말, 제작자 등을 나타내는 곳.
+    -->
+
+    <!--
+        <시멘틱 블록 요소>
+        main : 주요 블럭 지정 기능. 반복적인 콘텐츠는 포함 안됨. 유일한 부분에만 사용 가능. 전체적 레이아웃과는 무관. 바디에만 가능하고, 어딘가의 하위 요로소는 사용불가. 문서구조에 의미 부여.
+        figure : 하위에 figcaption이 있다. 삭제하더라도 흐름에 문제 없음. 서로 다른 독립적 콘텐츠를 하나로 묶는다.
+        details : 하위에 summary가 있다. 사용자에 반응하여 추가적 정보를 숨기거나 보여주는 요소. 어떤종류라도 가능. open이면 사용자에게 보여진다. summary는 세부정보의 캡션 지정 기능.
+    -->
+
+    <p>figure 그룹 외부에 메세지 작성 시, 원래 위치</p>
+    <figure>
+        <p>figure, figcaption 사용법</p>
+        <img src="이미지 url 들어갈곳">
+        <figcaption>한 묶음이라는걸 보여주기 위해, 한 묶음 안에 포함 된, 글 그림 등이 함께 들여쓰기 된다.</figcaption>
+    </figure>
+
+    <!-- 디테일과 서머리 사용법 -->
+    <details>
+        <p>서머리를 사용하지 않을 시</p>
+        <p>기본 글인 세부정보 라고 뜨게 된다.</p>
+    </details>
+    <details>
+        <p>서머리에 아무것도 지정 안했을 시</p>
+        <summary>
+        </summary>
+        <p>아무것도 달리지 않고 화살표로만 존재</p>
+    </details>
+    <details>
+        <summary>서머리에 캡션을 달아주었을 시
+        </summary>
+        <p>세부 정보 라는 기본 명 대신, 지정한 글자로 표시</p>
+    </details>
+    <details open>
+        <summary>디테일을 오픈으로 설정했을 시
+        </summary>
+        <p>내부 정보가 오픈 된 상태로 시작</p>
+    </details>
+
+    <!--
+        <시멘틱 인라인 요소>
+        ※자동 줄바꿈 없음. <br> 을 써주지 않는 이상, 한줄로 끊임없이 나오니 주의.
+        time : 시스템이 시간으로 인식하게 하는 요소. 정확한 형식의 날자와 시간을 필요로한다.
+        meter : 측정 값 표시. gauge라고 표기하기도 한다. 일정 시점에서 주어진 정적인 양을 표시. value가 필수로 들어가야만 한다.최대와 최소값을 위해 min,max가 들어간다. low,high. optimum(최적값)도 가능.
+        progress : 작업 진행도. 지속적 업데이트가 필요하기에, 자바스크립트와의 연동이 필수다.
+        ruby : 하위요소로 rt가 있다. 일본어,한자 주변 발음법이나 의미를 나타내기 위한 루비주석으로 사용. 루비요소는 하나이상의 문자로 구성된 기본 텍스트. 루비와 RT는 하나의 쌍.
+        wbr : 환경에 따라 줄바꿈 가능한 부분을 표시. 브라우저 크기나 환경에 따라 줄바꿈을 할 수 있다면 하고, 안된다면 줄바꿈을 스킵한다.
+    -->
+    <!--time 사용법-->
+    <time>23:11</time>
+    <time>03:33</time>
+    <time datetime="2024-04-15"> 2024 봄</time>
+    <p>표시되는것은 달라지는게 없지만, 작성시 이것이 숫자인지 시간인지를 나타내는것.</p>
+
+    <!--meter 사용법-->
+    <p>최대나 최소값을 지정, 현 값을 입력.</p>
+    <meter min="0" max="10" value="7"></meter>
+    <p>최소값만 지정 시 그래프 오류가 날 수 있으니 최소는 최대를 함께 적어주어야 한다.</p>
+    <p>문자열 안에도 사용 가능.<meter max="100" value="30"></meter> 미터를 기준으로 앞 뒤로 적을시 이리 표시된다.</p>
+
+    <!--ruby 사용법-->
+    <ruby>여기에 한자를 쓰고<rt>여기에 읽는 법</rt></ruby>
+
+    <!--wbr 사용법-->
+    <p>dsfdfgdfgdfhgdfhgrdsg123<wbr>asfersdhdrtghjfgjfghjfyjdghdfrghdfghfhfghfghfghbfghnfghjnfghfghgfhfghfghfghhhfhgfhgfhfhfhfhfghfgh123<wbr>sarfsdfdfsgdfgdfghdfhfghgf123</p>
+    <p>위의 글이 보일때 만약 화면이 작다면 첫번째 123 이후 개행이 될것이고, 화면이 매우 길다면 세번째 123까지 줄바꿈이 없을것이고, 화면이 중간이라면 2번째 123에서 줄바꿈이 일어날것이다.</p>
+    
+
+
+</body>
+</html>
